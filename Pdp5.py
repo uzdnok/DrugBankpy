@@ -28,7 +28,6 @@ for drug in root.findall('.//ns:drug', namespaces):
             'category': pathway.findtext('ns:category', default="N/A", namespaces=namespaces),
             'drugs_involved': pathway_drug_names
         })
-
         for pathway_drug in pathway_drugs:
             drug_name = pathway_drug.findtext('ns:name', default="N/A", namespaces=namespaces)
             interaction_data.append({
@@ -40,6 +39,7 @@ df_pathways = pd.DataFrame(pathway_data)
 df_interactions = pd.DataFrame(interaction_data)
 
 print(df_pathways)
+#print(df_interactions)
 
 def draw_interaction_graph():
     G = nx.Graph()

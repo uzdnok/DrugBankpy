@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 pd.set_option('display.max_columns', None)
 
-tree = ET.parse("drugbank_partial_and_generated.xml")
+tree = ET.parse("drugbank_partial.xml")
 root = tree.getroot()
 
 namespaces = {'ns': 'http://www.drugbank.ca'}

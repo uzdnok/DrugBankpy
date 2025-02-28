@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 pd.set_option('display.max_columns', None)
 
-tree = ET.parse("drugbank_partial_and_generated.xml")
+tree = ET.parse("drugbank_partial.xml")
 root = tree.getroot()
 
 namespaces = {'ns': 'http://www.drugbank.ca'}
@@ -64,4 +64,4 @@ def draw_synonym_graph(drugbank_id):
     plt.title(f'Graf synonimów dla {drugbank_id}')
     plt.show()
 
-draw_synonym_graph('DB00002')
+draw_synonym_graph('DB00001')
