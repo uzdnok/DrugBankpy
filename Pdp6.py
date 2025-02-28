@@ -16,6 +16,8 @@ def create_dictPDP6(path):
 
     pathways_count = defaultdict(int)
     interaction_counts = defaultdict(int)
+    for _ in root.findall('.//ns:drug', namespaces):
+        interaction_counts[0] += 1
     for drug in root.findall('.//ns:drug', namespaces):
         pathways = drug.findall('ns:pathways/ns:pathway', namespaces = namespaces)
         drug_name = drug.findtext('ns:name', default="N/A", namespaces=namespaces)
@@ -24,10 +26,8 @@ def create_dictPDP6(path):
             for pathway_drug in pathway_drugs:
                 drug_name = pathway_drug.findtext('ns:name', default="N/A", namespaces=namespaces)
                 pathways_count[drug_name] += 1
-        print(pathways_count[drug_name], drug_name)
-        interaction_counts[pathways_count[drug_name]] += 1
-        if pathways_count[drug_name] != 0:
-            interaction_counts[pathways_count[drug_name] - 1] -= 1
+                interaction_counts[pathways_count[drug_name]] += 1
+                interaction_counts[pathways_count[drug_name] - 1] -= 1
     return dict(interaction_counts)
 
 interaction_counts = create_dictPDP6("drugbank_partial.xml")
@@ -40,4 +40,4 @@ plt.title('Histogram liczby interakcji dla leków')
 plt.xlabel('Liczba Interakcji')
 plt.ylabel('Liczba leków o danyej liczbie interakcji')
 plt.xticks(rotation=90)
-#plt.show()
+plt.show()
